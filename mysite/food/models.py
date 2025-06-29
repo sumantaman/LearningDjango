@@ -13,8 +13,7 @@ class Item(models.Model):
     
 class Order(models.Model):
     def __str__(self):
-        return super().__str__()
-    
+        return self.item_order
     item_order = models.ForeignKey(Item, on_delete=models.CASCADE);
     order_date = models.DateTimeField(auto_now_add=True);   
     order_status = models.CharField(max_length=200);
