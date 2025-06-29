@@ -1,11 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Item(models.Model):
-
     def __str__(self):
         return self.item_name
-
+    user_name = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     item_name = models.CharField(max_length=200);
     item_desc = models.CharField(max_length=200);
     item_price = models.IntegerField();
@@ -13,7 +13,7 @@ class Item(models.Model):
     
 class Order(models.Model):
     def __str__(self):
-        return self.item_order
+        return self.order_status
     item_order = models.ForeignKey(Item, on_delete=models.CASCADE);
     order_date = models.DateTimeField(auto_now_add=True);   
     order_status = models.CharField(max_length=200);
