@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 class Item(models.Model):
@@ -10,6 +11,9 @@ class Item(models.Model):
     item_desc = models.CharField(max_length=200);
     item_price = models.IntegerField();
     item_image = models.CharField(max_length=500, default="https://hips.hearstapps.com/hmg-prod/images/detroit-style-pizza-recipe-1-64429e4a2e324.jpg?crop=0.974xw:0.974xh;0.0255xw,0&resize=640:*")
+
+    def get_absolute_url(self):
+        return reverse('detail',kwargs={"pk": self.pk})
     
 class Order(models.Model):
     def __str__(self):
